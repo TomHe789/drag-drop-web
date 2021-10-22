@@ -26,17 +26,19 @@ export default function TaskBox({
   const contentWrapRef = useRef(null);
 
   useEffect(() => {
+    let container = contentContainerRef.current
     // 容器被填满 重新设置容器颜色
     if (isFull) {
       // console.log(contentContainerRef.current.style)
-      contentContainerRef.current.style.backgroundColor = "skyblue";
+      container.style.backgroundColor = "skyblue";
     }
 
     // 订阅消息
     let token = PubSub.subscribe("INFO", (msg, data) => {
-      // 显示添加按钮
-      if (!isContainerFull()) {
+      // 显示添加按钮 盒子恢复颜色
+      if (!isContainerFull() && type === 1) {
         setIsShow(true);
+        container.style.backgroundColor = "rgb(238,220,220)";
       }
       // console.log(msg, data, '123')
     });
@@ -44,7 +46,7 @@ export default function TaskBox({
     return () => {
       PubSub.unsubscribe(token);
     };
-  }, [isFull]);
+  }, [isFull, type]);
 
   // 添加文本框
   function addItemHandle() {

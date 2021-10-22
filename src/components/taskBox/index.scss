@@ -1,0 +1,19 @@
+.boxContainer {
+  width: 150px;
+  height: 500px;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .boxTitle {
+    // height: 50px;
+    text-align: center;
+  }
+  .boxContent {
+    height: 460px;
+    .contentWrap {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

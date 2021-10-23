@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+// import PubSub from "pubsub-js";
 
 import RemoveButton from "@/components/removeButton";
 
@@ -62,7 +63,7 @@ export default function TaskInput({
 
   // 开始拖拽回调 传入当前拖拽任务id
   function dragStartHandle() {
-    // console.log('dragStartHandle')
+    // console.log('dragStartHandle', 123)
     onDragStart(id);
   }
 

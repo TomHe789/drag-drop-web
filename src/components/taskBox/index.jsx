@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import PubSub from "pubsub-js";
 
 import AddButton from "@/components/addButton";
-import TaskInput from "@/components/taskInput";
+// import TaskInput from "@/components/taskInput";
 
 import styles from "./index.scss";
 
@@ -37,6 +37,7 @@ export default function TaskBox({
     let token = PubSub.subscribe("INFO", (msg, data) => {
       // 显示添加按钮 盒子恢复颜色
       if (!isContainerFull() && type === 1) {
+        // console.log('接收到INFO')
         setIsShow(true);
         container.style.backgroundColor = "rgb(238,220,220)";
       }
@@ -88,7 +89,7 @@ export default function TaskBox({
 
   function dragLeavehandle(event) {
     event.preventDefault();
-    console.log("dragLeavehandle");
+    // console.log("dragLeavehandle");
     if (canDragIn) {
       setIsIn(false);
     }
@@ -96,7 +97,10 @@ export default function TaskBox({
 
   // 拖拽完成回调
   function dropHandle(event) {
-    // console.log("dropHandle...");
+    // 拖拽完成时 发布消息 判断第一个容器是否被填满
+    // console.log('发布INFO')
+    PubSub.publish("INFO", "hello");
+    // console.log("dropHandle...", type);
     // 盒子没有填满 才可以继续放
     if (!isContainerFull()) {
       dragTo(type);

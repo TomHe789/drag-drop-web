@@ -29,7 +29,7 @@ export default function RemoveButton({
   // 点击删除按钮回调
   function clickHandle() {
     removeTaskInput();
-    console.log(type);
+    // console.log(type);
     // 如果是在第一个盒子中点击删除按钮 发布消息
     if (type === 1) {
       PubSub.publish("INFO", "hello");
